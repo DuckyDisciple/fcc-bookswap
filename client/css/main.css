@@ -94,12 +94,12 @@ header {
     background: #f34848;
 }
 
-header a {
+header a.menu {
     font-weight: bold;
     text-decoration: none;
 }
 
-header a {
+header a.menu {
     color: #ec2525;
 }
 

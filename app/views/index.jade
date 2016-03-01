@@ -10,10 +10,10 @@ html
             p.home-content
             | Welcome to Bookswap
             br
-            | Add text
-            // .search
-            //     form(action="/search" method="get")
-            //         input.search-stock(type="text" name="stock")
-            //         input.submit(type="submit" value="SEARCH")
+            | Login to add/view your books or search for books below.
+            .search
+                form(action="/search" method="get")
+                    input.search-stock(type="text" name="query")
+                    input.submit(type="submit" value="SEARCH")
     script(type="text/javascript" src="/common/ajax-functions.js")
     script(type="text/javascript" src="/controllers/userController.client.js")
