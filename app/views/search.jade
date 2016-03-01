@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        title Search Results
+        link(rel="stylesheet" href="/client/css/main.css" type="text/css")
+    include ./includes/header.jade
+    body.search-div
+        .container.results
+            img.logo-results(src="/client/img/BookswapLogo.png")
+            .search-widget
+                form(action="/search" method="get")
+                    input.search-stock(type="text" name="query")
+                    input.submit(type="submit" value="SEARCH")
+            each val in results
+                .result
+                    p.book-title= val.title
+                    p.book-desc= val.desc
+        script(type="text/javascript" src="/common/ajax-functions.js")
+        script(type="text/javascript" src="/controllers/userController.client.js")

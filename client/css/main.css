@@ -130,7 +130,7 @@ nav {
     display: block;
 }
 
-.container-home .search form{
+.container-home .search-widget form{
     margin-top: 15px;
     text-align: center;
 }
@@ -147,7 +147,7 @@ nav {
     margin: 10px;
 }
 
-.search form {
+.search-widget form {
     text-align: right;
 }
 
@@ -225,7 +225,7 @@ a.btn {
     float: left;
 }
 
-.search {
+.search-widget {
     margin: 15px auto 0 auto;
 }
 
