@@ -10,6 +10,13 @@ var User = new Schema({
         email: String,
         token: String
     }
+    name: String,
+    city: String,
+    state: String,
+    books:{
+        name: String,
+        description: String
+    }
 });
 
 module.exports = mongoose.model('User', User);
