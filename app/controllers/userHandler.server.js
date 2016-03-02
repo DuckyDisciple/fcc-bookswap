@@ -4,6 +4,18 @@ var Users = require("../models/users.js");
 
 function UserHandler(){
     
+    this.addBook = function(req,res){
+        var newBook = {
+            title: req.body.title,
+            description: req.body.desc
+        }
+        Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {books: newBook}})
+            .exec(function(err,data){
+                if(err) throw err;
+                res.json(data);
+            });
+    };
+    
     // this.watchStock = function(req,res){
     //     var myStock = {symbol:req.params.symbol,name:req.params.name};
     //     Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {stocks: myStock}})

@@ -8,9 +8,9 @@ html
         .container.add-div
             form(action="/create" method="post")
                 label.title-lbl Title
-                input.title-text(type="text")
+                input.title-text(type="text" name="title")
                 label.desc-lbl Description
-                input.desc-text(type="textarea")
+                input.desc-text(type="textarea" name="desc")
                 button.submit(type="submit" value="ADD")
         script(type="text/javascript" src="/common/ajax-functions.js")
         script(type="text/javascript" src="/controllers/userController.client.js")

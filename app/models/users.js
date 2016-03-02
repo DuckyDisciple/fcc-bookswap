@@ -9,14 +9,14 @@ var User = new Schema({
         displayName: String,
         email: String,
         token: String
-    }
+    },
     name: String,
     city: String,
     state: String,
-    books:{
-        name: String,
+    books: [{
+        title: String,
         description: String
-    }
+    }]
 });
 
 module.exports = mongoose.model('User', User);

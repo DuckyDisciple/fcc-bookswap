@@ -32,6 +32,14 @@ module.exports=function(app, passport){
             res.redirect('/');
         });
     
+    app.route('/add')
+        .get(isLoggedIn, function(req,res){
+            res.render('add',{});
+        });
+    
+    app.route('/create')
+        .post(isLoggedIn, userHandler.addBook);
+    
     app.route('/search')
         .get(function(req, res) {
             //Search code
