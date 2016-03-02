@@ -1,0 +1,15 @@
+-var cities = cities || ["No locations indicated"]
+doctype html
+html
+    head
+        title= book.title
+        link(rel="stylesheet" href="/client/css/main.css" type="text/css")
+    include ./includes/header.jade
+    body.book-page
+        .container.book-div
+            h1.book-title= book.title
+            p.book-desc= book.desc
+            .book-locations
+                p.location-lbl Available in These Cities
+                each val in cities
+                    p.book-city= val
