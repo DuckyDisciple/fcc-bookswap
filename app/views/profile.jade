@@ -1,0 +1,20 @@
+-var title = name + "'s Profile"
+doctype html
+html
+    head
+        title= title
+        link(rel="stylesheet" href="/client/css/main.css" type="text/css")
+    include ./includes/header.jade
+    body.profile-page
+        .container.profile-div
+            h1.profile-header= title
+            form(action="/profile" method="post")
+                label.name-lbl Name
+                input.name-text(type="text" value=name)
+                label.city-lbl City
+                input.city-text(type="text" value=city)
+                label.state-lbl State
+                input.state-text(type="text" value=state)
+                button.submit(type="submit" value="UPDATE")
+        script(type="text/javascript" src="/common/ajax-functions.js")
+        script(type="text/javascript" src="/controllers/userController.client.js")
