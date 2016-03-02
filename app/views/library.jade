@@ -1,0 +1,16 @@
+-var title = name + "'s Library"
+doctype html
+html
+    head
+        title= title
+        link(rel="stylesheet" href="/client/css/main.css" type="text/css")
+    include ./includes/header.jade
+    body.library-page
+        .container.library-div
+            h1.library-header= title
+            each val in books
+                div.book-listing
+                    p.book-title= val.title
+                    p.book-desc= val.description
+        script(type="text/javascript" src="/common/ajax-functions.js")
+        script(type="text/javascript" src="/controllers/userController.client.js")
