@@ -64,6 +64,7 @@ module.exports = function(passport){
                     newUser.google.token = token;
                     newUser.google.displayName = profile.displayName;
                     newUser.google.email = profile.emails[0].value;
+                    newUser.name = profile.displayName;
                     
                     newUser.save(function(err){
                         if(err) return err;
