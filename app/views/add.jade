@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title Add Book
+        link(rel="stylesheet" href="/client/css/main.css" type="text/css")
+    include ./includes/header.jade
+    body.add-page
+        .container.add-div
+            form(action="/create" method="post")
+                label.title-lbl Title
+                input.title-text(type="text")
+                label.desc-lbl Description
+                input.desc-text(type="textarea")
+                button.submit(type="submit" value="ADD")
+        script(type="text/javascript" src="/common/ajax-functions.js")
+        script(type="text/javascript" src="/controllers/userController.client.js")
