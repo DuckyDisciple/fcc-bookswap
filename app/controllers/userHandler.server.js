@@ -23,6 +23,25 @@ function UserHandler(){
             });
     };
     
+    this.getBook = function(req,res){
+        Users.findOne({'books._id':req.params.id})
+            .exec(function(err,data){
+                var location = "No location data provided";
+                if(data.city && data.state){
+                    location = data.city + ", " + data.state;
+                }else if(data.city){
+                    location = data.city;
+                }else if(data.state){
+                    location = data.state;
+                }
+                for(var i in data.books){
+                    if(data.books[i].id === req.params.id){
+                        res.render('book',{book: data.books[i], location: location});
+                    }
+                }
+            });
+    };
+    
     // this.watchStock = function(req,res){
     //     var myStock = {symbol:req.params.symbol,name:req.params.name};
     //     Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {stocks: myStock}})
