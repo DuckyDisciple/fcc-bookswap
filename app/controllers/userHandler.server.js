@@ -12,7 +12,7 @@ function UserHandler(){
         Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {books: newBook}})
             .exec(function(err,data){
                 if(err) throw err;
-                res.json(data);
+                res.redirect('/library');
             });
     };
     

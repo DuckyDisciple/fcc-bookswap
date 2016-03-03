@@ -8,9 +8,11 @@ html
     body.library-page
         .container.library-div
             h1.library-header= title
+            a.add-book-link(href="/add") ADD BOOK
             each val in books
                 div.book-listing
-                    p.book-title= val.title
+                    a.book-link(href="/book/"+val.id)
+                        p.book-title= val.title
                     p.book-desc= val.description
         script(type="text/javascript" src="/common/ajax-functions.js")
         script(type="text/javascript" src="/controllers/userController.client.js")

@@ -63,7 +63,7 @@ module.exports=function(app, passport){
     
     app.route('/auth/google/callback')
         .get(passport.authenticate('google',{
-            successRedirect: '/',
+            successRedirect: '/library',
             failureRedirect: '/login'
         }));
 };
