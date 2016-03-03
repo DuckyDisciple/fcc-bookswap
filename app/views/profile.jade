@@ -10,11 +10,11 @@ html
             h1.profile-header= title
             form(action="/profile" method="post")
                 label.name-lbl Name
-                input.name-text(type="text" value=name)
+                input.name-text(type="text" name="name" value=name)
                 label.city-lbl City
-                input.city-text(type="text" value=city)
+                input.city-text(type="text" name="city" value=city)
                 label.state-lbl State
-                input.state-text(type="text" value=state)
+                input.state-text(type="text" name="state" value=state)
                 button.submit(type="submit" value="UPDATE")
         script(type="text/javascript" src="/common/ajax-functions.js")
         script(type="text/javascript" src="/controllers/userController.client.js")

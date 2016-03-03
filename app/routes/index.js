@@ -52,9 +52,8 @@ module.exports=function(app, passport){
         });
     
     app.route('/profile')
-        .get(isLoggedIn, function(req, res) {
-            //profile code
-        });
+        .get(isLoggedIn, userHandler.displayProfile)
+        .post(isLoggedIn, userHandler.updateProfile);
     
     app.route('/api/:id')
         .get(isLoggedIn, function(req, res){

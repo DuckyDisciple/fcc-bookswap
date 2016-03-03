@@ -26,12 +26,13 @@ function UserHandler(){
     this.getBook = function(req,res){
         Users.findOne({'books._id':req.params.id})
             .exec(function(err,data){
+                if(err) throw err;
                 var location = "No location data provided";
-                if(data.city && data.state){
+                if(data.city !== "" && data.state != ""){
                     location = data.city + ", " + data.state;
-                }else if(data.city){
+                }else if(data.city !== ""){
                     location = data.city;
-                }else if(data.state){
+                }else if(data.state !== ""){
                     location = data.state;
                 }
                 for(var i in data.books){
@@ -39,6 +40,36 @@ function UserHandler(){
                         res.render('book',{book: data.books[i], location: location});
                     }
                 }
+            });
+    };
+    
+    this.displayProfile = function(req, res){
+        Users.findOne({'google.id':req.user.google.id})
+            .exec(function(err, data) {
+                if (err) throw err;
+                res.render('profile',{
+                    name: data.name,
+                    city: data.city,
+                    state: data.state
+                });
+            });
+    };
+    
+    this.updateProfile = function(req, res){
+        Users.findOneAndUpdate({'google.id':req.user.google.id},
+            {$set: {
+                name: req.body.name,
+                city: req.body.city,
+                state: req.body.state
+            }},
+            {new:true})
+            .exec(function(err, data) {
+                if(err) throw err;
+                res.render('profile',{
+                    name: data.name,
+                    city: data.city,
+                    state: data.state
+                });
             });
     };
     
