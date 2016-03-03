@@ -16,6 +16,13 @@ function UserHandler(){
             });
     };
     
+    this.populateLibrary = function(req,res){
+        Users.findOne({'google.id':req.user.google.id})
+            .exec(function(err,data){
+                res.render('library',{name: data.name, books: data.books});
+            });
+    };
+    
     // this.watchStock = function(req,res){
     //     var myStock = {symbol:req.params.symbol,name:req.params.name};
     //     Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {stocks: myStock}})

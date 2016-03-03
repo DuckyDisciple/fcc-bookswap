@@ -36,6 +36,9 @@ module.exports=function(app, passport){
         .get(isLoggedIn, function(req,res){
             res.render('add',{});
         });
+        
+    app.route('/library')
+        .get(isLoggedIn, userHandler.populateLibrary);
     
     app.route('/create')
         .post(isLoggedIn, userHandler.addBook);
