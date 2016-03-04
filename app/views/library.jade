@@ -11,6 +11,7 @@ html
             a.add-book-link(href="/add") ADD BOOK
             each val in books
                 div.book-listing
+                    p.request-flag -
                     a.book-link(href="/book/"+val.id)
                         p.book-title= val.title
                     p.book-desc= val.description

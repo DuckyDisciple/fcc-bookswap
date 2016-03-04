@@ -21,9 +21,9 @@ var io = require('socket.io')(http);
 io.on('connection', function(socket){
   console.log("A user connected");
   
-  socket.on("watch",function(msg){
-    console.log("Someone watched");
-    io.emit("update", "watched");
+  socket.on("request",function(msg){
+    console.log("Requested book: "+msg);
+    io.emit("requested", msg);
   });
   
   socket.on("unwatch",function(msg){
