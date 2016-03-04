@@ -13,7 +13,8 @@ html
                     input.submit(type="submit" value="SEARCH")
             each val in results
                 .result
-                    p.book-title= val.title
+                    a.book-link(href="/book/"+val._id)
+                        p.book-title= val.title
                     p.book-desc= val.description
         script(type="text/javascript" src="/common/ajax-functions.js")
         script(type="text/javascript" src="/controllers/userController.client.js")
