@@ -14,8 +14,8 @@ var User = new Schema({
     city: String,
     state: String,
     books: [{
-        title: String,
-        description: String
+        type: Schema.Types.ObjectId,
+        ref: 'Book'
     }]
 });
 

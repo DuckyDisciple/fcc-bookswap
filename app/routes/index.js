@@ -47,9 +47,7 @@ module.exports=function(app, passport){
         .post(isLoggedIn, userHandler.addBook);
     
     app.route('/search')
-        .get(function(req, res) {
-            //Search code
-        });
+        .get(userHandler.search);
     
     app.route('/profile')
         .get(isLoggedIn, userHandler.displayProfile)

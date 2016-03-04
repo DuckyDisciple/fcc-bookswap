@@ -1,45 +1,55 @@
 "use strict";
 
 var Users = require("../models/users.js");
+var Books = require("../models/books.js");
+
+var mongoose = require('mongoose');
 
 function UserHandler(){
     
     this.addBook = function(req,res){
-        var newBook = {
+        var newId = mongoose.Types.ObjectId();
+        var newBook = new Books({
+            _id: newId,
             title: req.body.title,
             description: req.body.desc
-        }
-        Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {books: newBook}})
-            .exec(function(err,data){
+        });
+        Users.findOneAndUpdate({'google.id': req.user.google.id},{$push: {books: newId}})
+            .exec(function(err, user) {
                 if(err) throw err;
-                res.redirect('/library');
+                newBook._owner = user._id;
+                newBook.save(function(err2,book){
+                    if(err2) throw err2;
+                    res.redirect('/library');
+                });
             });
     };
     
     this.populateLibrary = function(req,res){
         Users.findOne({'google.id':req.user.google.id})
-            .exec(function(err,data){
-                res.render('library',{name: data.name, books: data.books});
+            .populate('books')
+            .exec(function(err,user){
+                if(err) throw err;
+                res.render('library',{name: user.name, books: user.books});
             });
     };
     
     this.getBook = function(req,res){
-        Users.findOne({'books._id':req.params.id})
+        Books.findOne({_id:req.params.id})
+            .populate('_owner')
             .exec(function(err,data){
                 if(err) throw err;
+                var city = data._owner.city;
+                var state = data._owner.state;
                 var location = "No location data provided";
-                if(data.city !== "" && data.state != ""){
-                    location = data.city + ", " + data.state;
-                }else if(data.city !== ""){
-                    location = data.city;
-                }else if(data.state !== ""){
-                    location = data.state;
+                if(city !== "" && state != ""){
+                    location = city + ", " + state;
+                }else if(city !== ""){
+                    location = city;
+                }else if(state !== ""){
+                    location = state;
                 }
-                for(var i in data.books){
-                    if(data.books[i].id === req.params.id){
-                        res.render('book',{book: data.books[i], location: location});
-                    }
-                }
+                res.render('book',{book: data, location: location});
             });
     };
     
@@ -71,6 +81,17 @@ function UserHandler(){
                     state: data.state
                 });
             });
+    };
+    
+    this.search = function(req,res){
+        Books.aggregate([
+            {$match: {$text: {$search: req.query.query}}},
+            {$project: {title: 1, description: 1}}
+        ])
+        .exec(function(err,data){
+            if(err) throw err;
+            res.render('search', {results: data});
+        });
     };
     
     // this.watchStock = function(req,res){
