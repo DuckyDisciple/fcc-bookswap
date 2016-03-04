@@ -53,6 +53,21 @@ function UserHandler(){
             });
     };
     
+    this.deleteBook = function(req, res){
+        Books.findOne({_id: req.params.id})
+            .remove()
+            .exec(function(err,book){
+                if(err) throw err;
+                Users.findOneAndUpdate({'google.id':req.user.google.id},{$pull: {books: req.params.id}})
+                    .exec(function(err2, user){
+                        if(err){
+                            res.json({error:err2});
+                        }
+                        res.json({success:"success"});
+                    });
+            });
+    };
+    
     this.displayProfile = function(req, res){
         Users.findOne({'google.id':req.user.google.id})
             .exec(function(err, data) {

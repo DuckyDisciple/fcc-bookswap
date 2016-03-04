@@ -48,6 +48,9 @@ module.exports=function(app, passport){
     
     app.route('/search')
         .get(userHandler.search);
+        
+    app.route('/book/delete/:id')
+        .post(isLoggedIn, userHandler.deleteBook);
     
     app.route('/profile')
         .get(isLoggedIn, userHandler.displayProfile)
