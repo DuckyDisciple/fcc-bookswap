@@ -56,6 +56,12 @@ module.exports=function(app, passport){
         .get(isLoggedIn, userHandler.displayProfile)
         .post(isLoggedIn, userHandler.updateProfile);
     
+    app.route('/request/book/:id')
+        .post(isLoggedIn, userHandler.requestBook);
+        
+    app.route('/request/user/:bookId')
+        .get(userHandler.getUserStatus);
+    
     app.route('/api/:id')
         .get(isLoggedIn, function(req, res){
             res.json(req.user.google);

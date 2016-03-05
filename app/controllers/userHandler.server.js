@@ -109,6 +109,42 @@ function UserHandler(){
         });
     };
     
+    this.requestBook = function(req,res){
+        Users.findOne({'google.id': req.user.google.id})
+            .exec(function(err,user){
+                if(err) throw err;
+                Books.findOneAndUpdate({_id: req.params.id}, {$set: {requestedBy: user._id}})
+                    .exec(function(err2, book) {
+                        if(err2) throw err2;
+                        res.json(book);
+                    });
+            });
+    };
+    
+    this.getUserStatus = function(req,res){
+        var status = {};
+        status.loggedIn = req.user !== undefined;
+        Books.findOne({_id: req.params.bookId})
+            .exec(function(err,book){
+                if(err) throw err;
+                status.requested = book.requestedBy !== undefined;
+                if(!status.loggedIn){
+                    status.owner = false;
+                    status.requester = false;
+                    res.json(status);
+                }else{
+                    Users.findOne({'google.id':req.user.google.id})
+                        .exec(function(err,user){
+                            if(err) throw err;
+                            var userId = user._id.toString();
+                            status.owner = book._owner.toString() === userId;
+                            status.requester = book.requestedBy === userId;
+                            res.json(status);
+                        });
+                }
+            });
+    };
+    
     // this.watchStock = function(req,res){
     //     var myStock = {symbol:req.params.symbol,name:req.params.name};
     //     Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {stocks: myStock}})

@@ -8,13 +8,48 @@
 
 var socket = io();
 
-$(".request-book").click(function(){
-    var bookId = $(this).attr("id");
-    socket.emit("request",bookId);
+var bookId = $(".request-book").attr("id");
+
+function updateForm(){
+    $.get("/request/user/"+bookId, function(data){
+        if(data.loggedIn){
+            if(data.owner){
+                if(data.requested){
+                    //show accept and deny buttons
+                    console.log("Someone requested my book");
+                }else{
+                    //show nobody requested
+                    console.log("Nobody wants my book");
+                }
+            }else if(data.requester){
+                //show cancel button
+                console.log("I want this");
+            }
+            else{
+                if(data.requested){
+                    //show requested status
+                    console.log("Someone beat me to it");
+                }else{
+                    $(".request-book").removeClass("hide");
+                }
+            }
+        }
+    });
+}
+
+$(document).on('ready', function(){
+    updateForm();
+});
+
+$(".request-book").on('click', function(){
+    $.post("/request/book/"+bookId,function(data){
+        socket.emit("request",bookId);
+    });
+    
 });
 
 socket.on("requested", function(bookId){
-    $("#"+bookId).addClass("hide");
+    updateForm();
 });
 
 // $(".watch").click(function(){

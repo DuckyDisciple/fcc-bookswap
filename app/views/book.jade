@@ -10,7 +10,7 @@ html
             p.book-desc= book.description
             p.location-lbl Available in
             p.book-city= location
-            p.request-book(id=book.id) REQUEST BOOK
+            p.request-book.hide(id=book.id) REQUEST BOOK
         script(type="text/javascript" src="/common/ajax-functions.js")
         script(type="text/javascript" src="/controllers/userController.client.js")
         script(type="text/javascript" src="/client/js/jquery.min.js")
