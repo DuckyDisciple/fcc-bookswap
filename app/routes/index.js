@@ -62,6 +62,9 @@ module.exports=function(app, passport){
     app.route('/request/user/:bookId')
         .get(userHandler.getUserStatus);
     
+    app.route('/request/cancel/:id')
+        .post(userHandler.cancelRequest);
+    
     app.route('/api/:id')
         .get(isLoggedIn, function(req, res){
             res.json(req.user.google);

@@ -26,9 +26,9 @@ io.on('connection', function(socket){
     io.emit("requested", msg);
   });
   
-  socket.on("unwatch",function(msg){
-    console.log("Someone unwatched");
-    io.emit("update", "unwatched");
+  socket.on("unrequest",function(msg){
+    console.log("Cancelled request: "+msg);
+    io.emit("requested", msg);
   });
 });
 

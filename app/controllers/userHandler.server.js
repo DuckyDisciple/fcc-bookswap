@@ -121,6 +121,14 @@ function UserHandler(){
             });
     };
     
+    this.cancelRequest = function(req,res){
+        Books.findOneAndUpdate({_id: req.params.id}, {$unset: {requestedBy:1}})
+            .exec(function(err,book){
+                if(err) throw err;
+                res.json(book);
+            });
+    };
+    
     this.getUserStatus = function(req,res){
         var status = {};
         status.loggedIn = req.user !== undefined;

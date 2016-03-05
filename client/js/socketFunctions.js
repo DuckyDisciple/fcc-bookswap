@@ -15,21 +15,30 @@ function updateForm(){
         if(data.loggedIn){
             if(data.owner){
                 if(data.requested){
-                    //show accept and deny buttons
+                    $(".request-status").html("Your book has been requested.");
+                    $(".accept-request").removeClass("hide");
+                    $(".deny-request").removeClass("hide");
                     console.log("Someone requested my book");
                 }else{
-                    //show nobody requested
+                    $(".request-status").html("Your book has no requests.");
+                    $(".accept-request").addClass("hide");
+                    $(".deny-request").addClass("hide");
                     console.log("Nobody wants my book");
                 }
             }else if(data.requester){
-                //show cancel button
+                $(".request-status").html("You have requested this book.");
+                $(".cancel-request").removeClass("hide");
+                $(".request-book").addClass("hide");
                 console.log("I want this");
             }
             else{
+                $(".cancel-request").addClass("hide");
                 if(data.requested){
-                    //show requested status
+                    $(".request-status").html("This book has been requested.");
+                    $(".request-book").addClass("hide");
                     console.log("Someone beat me to it");
                 }else{
+                    $(".request-status").html("You may request this book.");
                     $(".request-book").removeClass("hide");
                 }
             }
@@ -45,7 +54,12 @@ $(".request-book").on('click', function(){
     $.post("/request/book/"+bookId,function(data){
         socket.emit("request",bookId);
     });
-    
+});
+
+$(".cancel-request").on('click', function(){
+    $.post("/request/cancel/"+bookId, function(data){
+        socket.emit("unrequest",bookId);
+    });
 });
 
 socket.on("requested", function(bookId){
