@@ -63,10 +63,13 @@ module.exports=function(app, passport){
         .get(userHandler.getUserStatus);
     
     app.route('/request/cancel/:id')
-        .post(userHandler.cancelRequest);
+        .post(isLoggedIn, userHandler.cancelRequest);
     
     app.route('/request/accept/:id')
-        .post(userHandler.acceptRequest);
+        .post(isLoggedIn, userHandler.acceptRequest);
+        
+    app.route('/library/requests')
+        .get(isLoggedIn, userHandler.getAllRequests);
     
     app.route('/api/:id')
         .get(isLoggedIn, function(req, res){

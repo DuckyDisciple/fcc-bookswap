@@ -179,6 +179,20 @@ function UserHandler(){
             });
     };
     
+    this.getAllRequests = function(req,res){
+        Users.findOne({'google.id':req.user.google.id})
+            .populate('books')
+            .exec(function(err,data){
+                var requestedBookIds = [];
+                for(var i in data.books){
+                    if(data.books[i].requestedBy !== null){
+                        requestedBookIds.push(data.books[i]._id.toString());
+                    }
+                }
+                res.json(requestedBookIds);
+            });
+    };
+    
     // this.watchStock = function(req,res){
     //     var myStock = {symbol:req.params.symbol,name:req.params.name};
     //     Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {stocks: myStock}})
