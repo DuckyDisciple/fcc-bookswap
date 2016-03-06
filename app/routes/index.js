@@ -71,6 +71,9 @@ module.exports=function(app, passport){
     app.route('/library/requests')
         .get(isLoggedIn, userHandler.getAllRequests);
     
+    app.route('/requests/count')
+        .get(isLoggedIn, userHandler.getRequestCount);
+    
     app.route('/api/:id')
         .get(isLoggedIn, function(req, res){
             res.json(req.user.google);

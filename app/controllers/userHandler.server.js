@@ -193,6 +193,21 @@ function UserHandler(){
             });
     };
     
+    this.getRequestCount = function(req,res){
+        Users.findOne({'google.id':req.user.google.id})
+            .populate('books')
+            .exec(function(err, user) {
+                if(err) throw err;
+                var count = 0;
+                for(var i in user.books){
+                    if(user.books[i].requestedBy !== null){
+                        count++;
+                    }
+                }
+                res.json({count:count});
+            });
+    };
+    
     // this.watchStock = function(req,res){
     //     var myStock = {symbol:req.params.symbol,name:req.params.name};
     //     Users.findOneAndUpdate({'google.id': req.user.google.id},{$addToSet: {stocks: myStock}})
