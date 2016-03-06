@@ -30,6 +30,11 @@ io.on('connection', function(socket){
     console.log("Cancelled request: "+msg);
     io.emit("requested", msg);
   });
+  
+  socket.on("accepted",function(msg){
+    console.log("Accepted request: "+msg);
+    io.emit("requested", msg);
+  });
 });
 
 require('./app/config/passport')(passport);

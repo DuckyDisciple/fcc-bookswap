@@ -12,7 +12,8 @@ function UserHandler(){
         var newBook = new Books({
             _id: newId,
             title: req.body.title,
-            description: req.body.desc
+            description: req.body.desc,
+            requestedBy: null
         });
         Users.findOneAndUpdate({'google.id': req.user.google.id},{$push: {books: newId}})
             .exec(function(err, user) {
@@ -122,10 +123,34 @@ function UserHandler(){
     };
     
     this.cancelRequest = function(req,res){
-        Books.findOneAndUpdate({_id: req.params.id}, {$unset: {requestedBy:1}})
+        Books.findOneAndUpdate({_id: req.params.id}, {$set: {requestedBy: null}})
             .exec(function(err,book){
                 if(err) throw err;
                 res.json(book);
+            });
+    };
+    
+    this.acceptRequest = function(req,res){
+        Books.findOne({_id: req.params.id})
+            .populate('_owner')
+            .exec(function(err,book){
+                if(err) throw err;
+                Users.findOneAndUpdate({_id: book.requestedBy}, {$push: {books: book._id}})
+                    .exec(function(uErr,user){
+                        if(uErr) throw uErr;
+                        Users.findOneAndUpdate({_id: book._owner._id}, {$pull: {books: book._id}})
+                            .exec(function(uErr2,user2){
+                                Books.findOneAndUpdate({_id: book._id},
+                                    {$set: {
+                                        _owner: book.requestedBy,
+                                        requestedBy: null
+                                    }})
+                                    .exec(function(err2,book2){
+                                        if(err2) throw err2;
+                                        res.json(book2);
+                                    });
+                            });
+                    });
             });
     };
     
@@ -133,9 +158,10 @@ function UserHandler(){
         var status = {};
         status.loggedIn = req.user !== undefined;
         Books.findOne({_id: req.params.bookId})
+            .populate('_owner')
             .exec(function(err,book){
                 if(err) throw err;
-                status.requested = book.requestedBy !== undefined;
+                status.requested = book.requestedBy !== null;
                 if(!status.loggedIn){
                     status.owner = false;
                     status.requester = false;
@@ -145,7 +171,7 @@ function UserHandler(){
                         .exec(function(err,user){
                             if(err) throw err;
                             var userId = user._id.toString();
-                            status.owner = book._owner.toString() === userId;
+                            status.owner = book._owner._id.toString() === userId;
                             status.requester = book.requestedBy === userId;
                             res.json(status);
                         });

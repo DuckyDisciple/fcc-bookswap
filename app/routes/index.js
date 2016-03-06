@@ -65,6 +65,9 @@ module.exports=function(app, passport){
     app.route('/request/cancel/:id')
         .post(userHandler.cancelRequest);
     
+    app.route('/request/accept/:id')
+        .post(userHandler.acceptRequest);
+    
     app.route('/api/:id')
         .get(isLoggedIn, function(req, res){
             res.json(req.user.google);
