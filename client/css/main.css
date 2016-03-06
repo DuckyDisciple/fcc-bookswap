@@ -3,7 +3,7 @@ body {
     font-family: sans-serif;
     font-size: 16px;
     text-align: center;
-    background: #9ce4e1;
+    background: #ddd;
     padding: 100px 0 0 0;
     margin: 0;
     display: flex;
@@ -36,7 +36,7 @@ ul {
 /*-----Header-----*/
 header a ~ p {
     display: inline;
-    padding: 5px;
+    padding: 0 5px;
 }
 
 .header-right {
@@ -54,15 +54,15 @@ header {
     position: fixed;
     width: 100%;
     text-align: right;
-    background-color: #fffebe;
-    color: #FFF;
-    height: 40px;
+    background-color: #fff;
+    color: #333;
     top: 0;
     left: 0;
-    padding: 0 10px 15px 10px;
+    padding: 0 10px 5px 10px;
     font-weight: 300;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     /*box-shadow: 0 0 25px 0 rgba(200,255,0,0.75);*/
 }
 
@@ -80,7 +80,7 @@ header {
 .login-button {
     height: 40px;
     width: 75px;
-    background: #ec2525;
+    background: #00a4d8;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -97,32 +97,47 @@ header {
 header a.menu {
     font-weight: bold;
     text-decoration: none;
-}
-
-header a.menu {
-    color: #ec2525;
+    color: #9c6700;
 }
 
 header a:hover {
-    color: #f34848;
+    color: #624000;
 }
 
 nav {
     padding-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+nav p {
+    margin-top: 0;
 }
 
 .hide {
     display: none;
 }
 
+.header-requests {
+    background: #00a4d8;
+    border-radius: 50%;
+    color: #fff;
+    font-size: .7em;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    margin-right: 5px;
+}
+
 /*-----Home Page-----*/
 .container-home {
     width: 100%;
     height: 100%;
-    background: #fffebe;
+    background: none;
     padding: 20px 10px;
     text-align: center;
-    color: #fff;
+    color: #000;
     align-self: center;
 }
 
