@@ -8,10 +8,11 @@ html
     body.library-page
         .container.library-div
             h1.library-header= title
-            a.add-book-link(href="/add") ADD BOOK
+            a.add-book-link(href="/add")
+                p.add-book ADD BOOK
             each val in books
                 div.book-listing
-                    p.request-flag(id=val.id) -
+                    .request-flag.hide(id=val.id) !
                     a.book-link(href="/book/"+val.id)
                         p.book-title= val.title
                     p.book-desc= val.description

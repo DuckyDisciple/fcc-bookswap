@@ -1,12 +1,12 @@
 var socket = io();
 
 function updateLibrary(){
-    $(".request-flag").html("-");
-    $(".request-flag").parent("div").removeClass("flagged");
+    $(".request-flag").addClass("hide");
+    $(".request-flag").removeClass("flagged");
     $.get("/library/requests",function(data){
         for(var i=0; i<data.length; i++){
-            $("#"+data[i]).html("!");
-            $("#"+data[i]).parent("div").addClass("flagged");
+            $("#"+data[i]).addClass("flagged");
+            $("#"+data[i]).removeClass("hide");
         }
     });
 }
