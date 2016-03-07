@@ -158,6 +158,13 @@ nav p {
 /*    padding: 5px;*/
 /*}*/
 
+.search-box {
+    border: none;
+    border-radius: 3px;
+    margin: 5px 10px 20px 0;
+    padding: 5px;
+}
+
 .search-bar {
     margin: 10px;
 }
@@ -168,7 +175,7 @@ nav p {
 
 .submit {
     padding: 10px;
-    background: #ec2525;
+    background: #00a4d8;
     color: #fff;
     border: none;
     border-radius: 3px;
