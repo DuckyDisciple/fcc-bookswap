@@ -159,7 +159,7 @@ nav p {
 /*}*/
 
 .search-box {
-    border: none;
+    border: solid #000 1px;
     border-radius: 3px;
     margin: 5px 10px 20px 0;
     padding: 5px;
@@ -303,18 +303,9 @@ a.btn {
 }
 
 /*-----Search Results Page-----*/
-.container-search {
-    background: #fffebe;
-    color: #FFF;
-    border-radius: 10px;
-    width: 400px;
-    margin: 15px auto;
-    padding: 15px;
-}
-
 .logo-results {
-    height: 75px;
-    width: 150px;
+    height: 40px;
+    width: 80px;
     float: left;
 }
 
@@ -322,12 +313,16 @@ a.btn {
     margin: 15px auto 0 auto;
 }
 
+.results .search-widget {
+    margin-top: 0;
+}
+
 .results-header {
     font-size: 24px;
 }
 
 .result {
-    color: #fff;
+    color: #333;
     margin: 10px auto;
     border-width: 1px;
     border-style: solid;

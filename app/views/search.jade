@@ -9,8 +9,9 @@ html
             img.logo-results(src="/client/img/BookswapLogo.png")
             .search-widget
                 form(action="/search" method="get")
-                    input.search-stock(type="text" name="query")
+                    input.search-box(type="text" name="query")
                     input.submit(type="submit" value="SEARCH")
+            h2 Search Results
             each val in results
                 .result
                     a.book-link(href="/book/"+val._id)
