@@ -385,6 +385,23 @@ a.btn {
     cursor: pointer;
 }
 
+/*-----Profile Page-----*/
+.profile-page form{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-page input {
+    border-radius: 3px;
+    padding: 3px;
+    border: solid 1px;
+    margin-bottom: 10px;
+}
+
+.profile-page label {
+    align-self: flex-start;
+}
+
 /*-----Search Results Page-----*/
 .logo-results {
     height: 40px;
