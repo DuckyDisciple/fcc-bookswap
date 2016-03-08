@@ -341,6 +341,50 @@ a.btn {
     margin-top: 10px;
 }
 
+/*-----Book Page-----*/
+.location-lbl {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.book-city {
+    margin-top: 3px;
+}
+
+.request-status {
+    font-weight: bold;
+    color: #009688;
+    margin-top: 20px;
+}
+
+.owner-request {
+    border-radius: 5px;
+    border: none;
+    display: inline-block;
+    padding: 5px;
+    color: #000;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.accept-request, .request-book {
+    background: #5cd364;
+}
+
+.accept-request:hover, .request-book:hover {
+    background: #2b9726;
+    cursor: pointer;
+}
+
+.deny-request, .cancel-request {
+    background: #e85d38;
+}
+
+.deny-request:hover, .cancel-request:hover {
+    background: #c11e1e;
+    cursor: pointer;
+}
+
 /*-----Search Results Page-----*/
 .logo-results {
     height: 40px;

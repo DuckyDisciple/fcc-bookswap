@@ -20,23 +20,35 @@ function updateForm(){
                         $(".request-status").html("Your book has been requested.");
                         $(".accept-request").removeClass("hide");
                         $(".deny-request").removeClass("hide");
+                        $(".accept-request").addClass("owner-request");
+                        $(".deny-request").addClass("owner-request");
                         $(".cancel-request").addClass("hide");
+                        $(".cancel-request").removeClass("owner-request");
                         $(".request-book").addClass("hide");
+                        $(".request-book").removeClass("owner-request");
                         console.log("Someone requested my book");
                     }else{
                         $(".request-status").html("Your book has no requests.");
                         $(".accept-request").addClass("hide");
                         $(".deny-request").addClass("hide");
+                        $(".accept-request").removeClass("owner-request");
+                        $(".deny-request").removeClass("owner-request");
                         $(".cancel-request").addClass("hide");
+                        $(".cancel-request").removeClass("owner-request");
                         $(".request-book").addClass("hide");
+                        $(".request-book").removeClass("owner-request");
                         console.log("Nobody wants my book");
                     }
                 }else if(data.requester){
                     $(".request-status").html("You have requested this book.");
                     $(".cancel-request").removeClass("hide");
+                    $(".cancel-request").addClass("owner-request");
                     $(".request-book").addClass("hide");
+                    $(".request-book").removeClass("owner-request");
                     $(".accept-request").addClass("hide");
                     $(".deny-request").addClass("hide");
+                    $(".accept-request").removeClass("owner-request");
+                    $(".deny-request").removeClass("owner-request");
                     console.log("I want this");
                 }
                 else{
@@ -44,15 +56,23 @@ function updateForm(){
                     if(data.requested){
                         $(".request-status").html("This book has been requested.");
                         $(".request-book").addClass("hide");
+                        $(".request-book").removeClass("owner-request");
                         $(".accept-request").addClass("hide");
                         $(".deny-request").addClass("hide");
                         $(".cancel-request").addClass("hide");
+                        $(".cancel-request").removeClass("owner-request");
+                        $(".accept-request").removeClass("owner-request");
+                        $(".deny-request").removeClass("owner-request");
                         console.log("Someone beat me to it");
                     }else{
                         $(".request-status").html("You may request this book.");
                         $(".request-book").removeClass("hide");
+                        $(".request-book").addClass("owner-request");
                         $(".cancel-request").addClass("hide");
+                        $(".cancel-request").removeClass("owner-request");
                         $(".accept-request").addClass("hide");
+                        $(".accept-request").removeClass("owner-request");
+                        $(".deny-request").removeClass("owner-request");
                         $(".deny-request").addClass("hide");
                     }
                 }
