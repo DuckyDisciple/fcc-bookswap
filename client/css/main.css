@@ -91,7 +91,7 @@ header {
 
 .login-button:hover {
     cursor: pointer;
-    background: #f34848;
+    background: #0082a7;
 }
 
 header a.menu {
@@ -182,7 +182,7 @@ nav p {
 }
 
 .submit:hover {
-    background: #f34848;
+    background: #0082a7;
 }
 
 /*-----Image Style-----*/
@@ -211,7 +211,7 @@ a.btn {
 
 .btn {
     color: #fff;
-    background: #009688;
+    background: #00a4d8;
     display: inline-block;
     border: 0;
     border-radius: 5px;
@@ -235,7 +235,7 @@ a.btn {
 }
 
 .btn:hover{
-    background: #F00;
+    background: #0082a7;
 }
 
 .login-text {
@@ -248,7 +248,7 @@ a.btn {
 }
 
 .add-book {
-    background: #9c6700;
+    background: #00a4d8;
     color: #fff;
     border-radius: 5px;
     font-weight: bold;
@@ -257,7 +257,7 @@ a.btn {
 }
 
 .add-book:hover {
-    background: #624000;
+    background: #0082a7;
 }
 
 .book-listing {
@@ -444,7 +444,7 @@ a.btn {
 button.home {
     height: 40px;
     width: 75px;
-    background: #ec2525;
+    background: #00a4d8;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -454,7 +454,7 @@ button.home {
 }
 
 button.home:hover {
-    background: #f34848;
+    background: #0082a7;
     cursor: pointer;
 }
 
