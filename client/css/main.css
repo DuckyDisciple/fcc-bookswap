@@ -313,6 +313,34 @@ a.btn {
     color: #f00;
 }
 
+/*-----Add Book Page-----*/
+.add-page form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-page input,textarea {
+    margin: 5px auto 10px auto;
+    align-self: center;
+    border-radius: 3px;
+    border: solid 1px;
+    padding: 3px;
+}
+
+.title-textbox {
+    width: 250px;
+}
+
+.desc-textbox {
+    width: 325px;
+    height: 85px;
+}
+
+.submit {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 /*-----Search Results Page-----*/
 .logo-results {
     height: 40px;

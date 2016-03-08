@@ -6,11 +6,12 @@ html
     include ./includes/header.jade
     body.add-page
         .container.add-div
+            h2 Add Book
             form(action="/create" method="post")
                 label.title-lbl Title
-                input.title-text(type="text" name="title")
+                input.title-textbox(type="text" name="title")
                 label.desc-lbl Description
-                input.desc-text(type="textarea" name="desc")
-                button.submit(type="submit" value="ADD")
+                textarea.desc-textbox(name="desc")
+                button.submit(type="submit" value="ADD") ADD
         script(type="text/javascript" src="/common/ajax-functions.js")
         script(type="text/javascript" src="/controllers/userController.client.js")
